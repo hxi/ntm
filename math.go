@@ -1,6 +1,7 @@
 package ntm
 
 import (
+	"fmt"
 	"math"
 )
 
@@ -9,7 +10,7 @@ const (
 	machineEpsilonSqrt = 1e-8 // math.Sqrt(machineEpsilon)
 )
 
-func sigmoid(x float64) float64 {
+func Sigmoid(x float64) float64 {
 	return 1.0 / (1 + math.Exp(-x))
 }
 
@@ -39,4 +40,17 @@ func MakeTensor3(n, m, p int) [][][]float64 {
 		t[i] = MakeTensor2(m, p)
 	}
 	return t
+}
+
+func Sprint2(t [][]float64) string {
+	s := "["
+	for _, t1 := range t {
+		s += "["
+		for _, t2 := range t1 {
+			s += fmt.Sprintf(" %.2f", t2)
+		}
+		s += "]"
+	}
+	s += "]"
+	return s
 }
